@@ -1,0 +1,13 @@
+<%= f = form_for :lamp, "#", [phx_change: :validate] %>
+  <div class="form-group row">
+    <%= label f, :color, "Choose a color", class: "col-sm-2 col-form-label", style: "text-align: right" %>
+    <div class="col-sm-2">
+      <%= color_input f, :color, class: "form-control", value: @color %>
+    </div>
+    <button type="submit" class="col-sm-2 btn btn-primary">Submit</button>
+  </div>
+</form>
+
+
+
+Current temperature: <%= @color %>
