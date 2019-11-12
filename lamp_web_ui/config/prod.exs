@@ -16,6 +16,18 @@ config :lamp_web_ui, LampWebUiWeb.Endpoint,
 # Do not print debug messages in production
 config :logger, level: :info
 
+config :lamp_web_ui, LampWebUiWeb.Endpoint,
+  # Nerves root filesystem is read-only, so disable the code reloader
+  code_reloader: false,
+  http: [port: 80],
+  # Use compile-time Mix config instead of runtime environment variables
+  load_from_system_env: false,
+  # Start the server since we're running in a release instead of through `mix`
+  server: true,
+  url: [host: "nerves.local", port: 80]
+
+config :lamp_web_ui, lamp_control: LampControl.Lamp
+
 # ## SSL Support
 #
 # To get SSL working, you will need to add the `https` key
@@ -52,4 +64,4 @@ config :logger, level: :info
 
 # Finally import the config/prod.secret.exs which loads secrets
 # and configuration from environment variables.
-import_config "prod.secret.exs"
+# import_config "prod.secret.exs"

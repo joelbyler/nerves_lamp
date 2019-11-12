@@ -11,7 +11,8 @@ defmodule LampControl.Application do
     children = [
       # Starts a worker by calling: LampControl.Worker.start_link(arg)
       # {LampControl.Worker, arg}
-      worker(LampControl.Lamp, [[color: "#4B0082"]])
+
+      worker(LampControl.Lamp, [[name: :lamp, color: "#4B0082"]])
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html

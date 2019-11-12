@@ -3,6 +3,7 @@ defmodule LampControl.Lamp do
 
   alias Blinkchain.Color
   alias Blinkchain.Point
+  require Logger
 
   # Client API
   defmodule State do
@@ -18,6 +19,8 @@ defmodule LampControl.Lamp do
   end
 
   def set_color(color \\ "#4B0082") do
+    Logger.info("LampControl setting color #{color}")
+
     GenServer.cast(:lamp, {:set_color, color})
   end
 
@@ -28,16 +31,22 @@ defmodule LampControl.Lamp do
   end
 
   def handle_cast({:set_color, color}, state) do
+    Logger.info("LampControl setting color from cast #{color}")
     c = Color.parse(color)
     Blinkchain.set_pixel(%Point{x: 0, y: 0}, c)
     Blinkchain.render()
-
     {:noreply, %State{state | color: color}}
   end
 end
 
+# LampControl.Lamp.set_color("#4B0082")
+
 # Blinkchain.set_pixel(%Blinkchain.Point{x: 0, y: 0}, Blinkchain.Color.parse("#4B0082"))
 # Blinkchain.set_pixel(%Blinkchain.Point{x: 0, y: 0}, Blinkchain.Color.parse("#0000ff"))
+
+# Blinkchain.set_pixel(%Blinkchain.Point{x: 0, y: 0}, Blinkchain.Color.parse("#4B0082"))
+# Blinkchain.render()
+
 
 # 00:00:02.310 [info]  Application blinkchain exited: Blinkchain.Application.start(:normal, []) returned an error: shutdown: failed to start child: Blinkchain.HAL
 #     ** (EXIT) an exception was raised:

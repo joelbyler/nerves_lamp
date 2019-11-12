@@ -31,6 +31,15 @@ To start your Nerves app:
   * Discussion Slack elixir-lang #nerves ([Invite](https://elixir-slackin.herokuapp.com/))
   * Source: https://github.com/nerves-project/nerves
 
+## Building
+```
+MIX_TARGET=rpi0 MIX_ENV=prod mix firmware
+```
+## Deploying over otg
+```
+MIX_ENV=prod ./upload.sh
+```
+
 ## Hardware
 
 ### Building your lamp

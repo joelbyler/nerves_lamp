@@ -39,7 +39,7 @@ defmodule LampWebUi.MixProject do
       {:phoenix_live_reload, "~> 1.2", only: :dev},
       {:gettext, "~> 0.11"},
       {:jason, "~> 1.0"},
-      {:lamp_control, path: "../lamp_control"},
+      {:lamp_control, path: "../lamp_control", only: :prod},
       {:plug_cowboy, "~> 2.0"}
     ]
   end
