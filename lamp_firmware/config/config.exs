@@ -17,7 +17,7 @@ config :nerves, :firmware, rootfs_overlay: "rootfs_overlay"
 # involved with firmware updates.
 
 config :shoehorn,
-  init: [:nerves_runtime, :nerves_init_gadget],
+  init: [:nerves_runtime, :vintage_net, :nerves_firmware_ssh, {LampFirmware.SSHConsole, :start, []}],
   app: Mix.Project.config()[:app]
 
 # Use Ringlogger as the logger backend and remove :console.
@@ -26,23 +26,46 @@ config :shoehorn,
 
 config :logger, backends: [RingLogger]
 
-config :nerves_firmware_ssh,
-  authorized_keys: [
-    File.read!(Path.join(System.user_home!, ".ssh/nerves/id_rsa.pub"))
+# config :nerves_firmware_ssh,
+#   authorized_keys: [
+#     File.read!(Path.join(System.user_home!, ".ssh/nerves/id_rsa.pub"))
+#   ]
+
+config :mdns_lite,
+  host: [:hostname, "nerves"],
+  services: [
+    %{
+      name: "SSH Remote Login Protocol",
+      protocol: "ssh",
+      transport: "tcp",
+      port: 22
+    },
+    %{
+      name: "Secure File Transfer Protocol over SSH",
+      protocol: "sftp-ssh",
+      transport: "tcp",
+      port: 22
+    },
+    %{
+      name: "Erlang Port Mapper Daemon",
+      protocol: "epmd",
+      transport: "tcp",
+      port: 4369
+    }
   ]
 
 import_config "../../lamp_web_ui/config/config.exs"
 # import_config "../../lamp_web_ui/config/prod.exs"
 import_config "../../lamp_control/config/config.exs"
 
-# config :lamp_web_ui, LampWebUiWeb.Endpoint,
+config :lamp_web_ui, LampWebUiWeb.Endpoint,
 #   # Nerves root filesystem is read-only, so disable the code reloader
-#   code_reloader: false,
+  code_reloader: false,
 #   http: [port: 80],
 #   # Use compile-time Mix config instead of runtime environment variables
 #   load_from_system_env: false,
 #   # Start the server since we're running in a release instead of through `mix`
-#   server: true,
+  server: true
 #   url: [host: "nerves.local", port: 80]
 
 if Mix.target() != :host do
