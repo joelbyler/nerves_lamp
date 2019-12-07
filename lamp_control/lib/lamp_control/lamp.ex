@@ -33,11 +33,32 @@ defmodule LampControl.Lamp do
   def handle_cast({:set_color, color}, state) do
     Logger.info("LampControl setting color from cast #{color}")
     c = Color.parse(color)
-    Blinkchain.set_pixel(%Point{x: 0, y: 0}, c)
+    Blinkchain.set_pixel(%Point{x:  0, y: 0}, c)
+    Blinkchain.set_pixel(%Point{x:  1, y: 0}, c)
+    Blinkchain.set_pixel(%Point{x:  2, y: 0}, c)
+    Blinkchain.set_pixel(%Point{x:  3, y: 0}, c)
+    Blinkchain.set_pixel(%Point{x:  4, y: 0}, c)
+    Blinkchain.set_pixel(%Point{x:  5, y: 0}, c)
+    Blinkchain.set_pixel(%Point{x:  6, y: 0}, c)
+    Blinkchain.set_pixel(%Point{x:  7, y: 0}, c)
+    Blinkchain.set_pixel(%Point{x:  8, y: 0}, c)
+    Blinkchain.set_pixel(%Point{x:  9, y: 0}, c)
+    Blinkchain.set_pixel(%Point{x: 10, y: 0}, c)
+    Blinkchain.set_pixel(%Point{x: 11, y: 0}, c)
     Blinkchain.render()
     {:noreply, %State{state | color: color}}
   end
 end
+
+# red: ff000c
+# orange: ffa304
+# yellow: fffa18
+# green: 19ff02
+# blue: 000dff
+# violet: 7b00ff
+# magenta: ff00fd
+
+
 
 # LampControl.Lamp.set_color("#4B0082")
 

@@ -44,12 +44,15 @@ defmodule LampFirmware.MixProject do
       {:ring_logger, "~> 0.6"},
       {:toolshed, "~> 0.2"},
       {:nerves_firmware_ssh, "~> 0.4.4", targets: @all_targets},
+      {:nerves_hub_cli, "~> 0.9.0"},
 
       {:lamp_web_ui, path: "../lamp_web_ui"},
       {:lamp_control, path: "../lamp_control"},
 
       # Dependencies for all targets except :host
       {:nerves_runtime, "~> 0.6", targets: @all_targets},
+      {:nerves_hub, "~> 0.1", targets: @all_targets},
+      {:nerves_time, "~> 0.2", targets: @all_targets},
       {:nerves_init_gadget, "~> 0.4", targets: @all_targets},
 
       # Dependencies for specific targets
