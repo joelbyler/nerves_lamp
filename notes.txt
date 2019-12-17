@@ -1,0 +1,28 @@
+joelbyler:nerves: Today at 11:17 AM
+question, anyone have tips on speeding up boot times on nerves?  seems like these have gradually started to slow down as we add more libs to the standard systems.  is the answer to just build your own system?
+6 replies
+
+fhunleth  26 minutes ago
+This has been driving me crazy, but I haven't had any time to work on it. If you're using an RPi Zero, the problem is especially bad.
+
+fhunleth  25 minutes ago
+The best thing to do is to turn off or remove SystemRegistry. That's a high percentage of the problem. To that end, the main user of SystemRegistry is nerves_network and Justin and I are trying to replace that with vintage_net.
+
+fhunleth  23 minutes ago
+Somewhat recently we started getting 1-5 second delays when using mDNS with Mac. I fixed the issue in mdns_lite, but a release hasn't been made. Plus most people are still using the mdns library from nerves_init_gadget.
+
+fhunleth  19 minutes ago
+I suppose one answer to this could be that Justin and I need help maintaining projects. And that help would save us time and get you to faster boot times.
+
+joelbyler:nerves:  4 minutes ago
+:thumbsup:   thanks for the reply @fhunleth, I still feel like a noob when it comes to a lot of this stuff so I appreciate what you and Justin do.  I’m not sure what I can do to help with maintenance but if you have things that are more tedious feel free to hit me up and I’ll do my best.
+
+fhunleth  1 minute ago
+Thanks - some of it is just being encouraging and helpful when we publish updates. We're so deep into the code that we know that our docs aren't helpful to beginners sometimes and getting a PR that improves it is super helpful and saves us a lot of time.
+:+1:
+1
+
+
+TODO:
+* create pr to add troubleshooting or tip info about `config :nerves_runtime, :kernel, use_system_registry: false`
+* add to readme for nerves_firmware_ssh to explain targets if needed

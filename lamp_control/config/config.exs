@@ -20,7 +20,7 @@ gamma = [
 ]
 
 config :blinkchain,
-  canvas: {1, 1}
+  canvas: {12, 1}
 
 config :blinkchain, :channel0,
   pin: 18,
@@ -29,10 +29,9 @@ config :blinkchain, :channel0,
   gamma: gamma,
   arrangement: [
     %{
-      type: :matrix,
+      type: :strip,
       origin: {0, 0},
-      count: {1, 1},
-      direction: {:up, :right},
-      progressive: true
+      count: 12,
+      direction: :right
     }
   ]

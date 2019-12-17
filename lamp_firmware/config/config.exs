@@ -10,9 +10,15 @@ config :lamp_firmware, target: Mix.target()
 # Customize non-Elixir parts of the firmware. See
 # https://hexdocs.pm/nerves/advanced-configuration.html for details.
 
-config :nerves, :firmware, rootfs_overlay: "rootfs_overlay"
+config :nerves, :firmware,
+  rootfs_overlay: "rootfs_overlay",
+  provisioning: :nerves_hub
 
 config :nerves_runtime, :kernel, use_system_registry: false
+
+config :nerves_hub,
+  fwup_public_keys: [:lampkey],
+  remote_iex: true
 
 # Use shoehorn to start the main application. See the shoehorn
 # docs for separating out critical OTP applications such as those
@@ -47,6 +53,28 @@ import_config "../../lamp_control/config/config.exs"
 #   server: true,
 #   url: [host: "nerves.local", port: 80]
 
+config :nerves_network,
+  regulatory_domain: "US"
+
+key_mgmt = System.get_env("NERVES_NETWORK_KEY_MGMT") || "WPA-PSK"
+
+config :nerves_network, :default,
+  wlan0: [
+    networks: [
+      [
+        ssid: System.get_env("NERVES_NETWORK_SSID"),
+        psk: System.get_env("NERVES_NETWORK_PSK"),
+        key_mgmt: String.to_atom(key_mgmt),
+        scan_ssid: 1 #if your WiFi setup as hidden
+      ]
+    ]
+  ],
+  eth0: [
+    ipv4_address_method: :dhcp
+  ]
+
 if Mix.target() != :host do
   import_config "target.exs"
 end
+
+import_config "#{Mix.env()}.exs"

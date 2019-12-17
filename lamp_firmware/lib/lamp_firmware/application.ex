@@ -17,7 +17,7 @@ defmodule LampFirmware.Application do
         # Starts a worker by calling: LampFirmware.Worker.start_link(arg)
         # {LampFirmware.Worker, arg},
 
-        # worker(LampFirmware.Lamp, [[color: "#4B0082"]])
+        NervesHub.Supervisor
 
       ] ++ children(target())
 
