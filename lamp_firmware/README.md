@@ -44,6 +44,11 @@ MIX_ENV=prod ./upload.sh
 MIX_TARGET=rpi0 MIX_ENV=prod mix firmware && MIX_ENV=prod mix nerves_hub.firmware publish --key lampkey
 ```
 
+1 mix firmware
+2 mix nerves_hub.firmware publish
+
+
+
 ## Hardware
 
 ### Building your lamp

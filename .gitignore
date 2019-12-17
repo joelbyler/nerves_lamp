@@ -1,0 +1,3 @@
+*.secret.exs
+*-cert.pem
+*-key.pem

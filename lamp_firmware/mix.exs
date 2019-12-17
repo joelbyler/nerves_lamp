@@ -2,7 +2,7 @@ defmodule LampFirmware.MixProject do
   use Mix.Project
 
   @app :lamp_firmware
-  @version "0.1.0"
+  @version "0.1.1"
   @all_targets [:rpi, :rpi0, :rpi2, :rpi3, :rpi3a, :rpi4, :bbb, :x86_64]
 
   def project do
@@ -54,6 +54,7 @@ defmodule LampFirmware.MixProject do
       {:nerves_hub, "~> 0.1", targets: @all_targets},
       {:nerves_time, "~> 0.2", targets: @all_targets},
       {:nerves_init_gadget, "~> 0.4", targets: @all_targets},
+      {:nerves_network, "~> 0.5", targets: @all_targets},
 
       # Dependencies for specific targets
       {:nerves_system_rpi, "~> 1.8", runtime: false, targets: :rpi},
