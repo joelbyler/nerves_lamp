@@ -4,7 +4,7 @@ defmodule LampWebUiWeb.ThermostatLive do
   @lamp_control Application.get_env(:lamp_web_ui, :lamp_control)
 
   def render(assigns) do
-    Phoenix.View.render(LampWebUiWeb.PageView, "temp_live_view.html", assigns)
+    Phoenix.View.render(LampWebUiWeb.PageView, "lamp_live_view.html", assigns)
   end
 
   def mount(_params, socket) do
@@ -44,10 +44,3 @@ defmodule LampWebUiWeb.ThermostatLive do
     {:noreply, assign(socket, color: color)}
   end
 end
-# red: ff000c
-# orange: ffa304
-# yellow: fffa18
-# green: 19ff02
-# blue: 000dff
-# violet: 7b00ff
-# magenta: ff00fd
