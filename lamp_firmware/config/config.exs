@@ -7,6 +7,10 @@ use Mix.Config
 
 config :lamp_firmware, target: Mix.target()
 
+config :lamp_firmware, :dioty,
+  username: System.get_env("DIOTY_USERNAME"),
+  password: System.get_env("DIOTY_PASSWORD")
+
 # Customize non-Elixir parts of the firmware. See
 # https://hexdocs.pm/nerves/advanced-configuration.html for details.
 
@@ -77,4 +81,4 @@ if Mix.target() != :host do
   import_config "target.exs"
 end
 
-import_config "#{Mix.env()}.exs"
+import_config "#{Mix.env()}.secret.exs"
