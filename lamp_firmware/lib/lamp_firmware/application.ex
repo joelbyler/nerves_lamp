@@ -17,8 +17,8 @@ defmodule LampFirmware.Application do
         # Starts a worker by calling: LampFirmware.Worker.start_link(arg)
         # {LampFirmware.Worker, arg},
 
-        NervesHub.Supervisor
-
+        NervesHub.Supervisor,
+        LampFirmware.MqttSupervisor
       ] ++ children(target())
 
     Supervisor.start_link(children, opts)

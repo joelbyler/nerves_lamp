@@ -2,7 +2,7 @@ defmodule LampFirmware.MixProject do
   use Mix.Project
 
   @app :lamp_firmware
-  @version "0.1.1"
+  @version "0.1.3"
   @all_targets [:rpi, :rpi0, :rpi2, :rpi3, :rpi3a, :rpi4, :bbb, :x86_64]
 
   def project do
@@ -48,6 +48,7 @@ defmodule LampFirmware.MixProject do
 
       {:lamp_web_ui, path: "../lamp_web_ui"},
       {:lamp_control, path: "../lamp_control"},
+      {:tortoise, "~> 0.9"},
 
       # Dependencies for all targets except :host
       {:nerves_runtime, "~> 0.6", targets: @all_targets},
