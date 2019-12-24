@@ -20,14 +20,21 @@ defmodule LampFirmware.MqttHandler do
   def handle_message(["", "joelbyler@gmail.com", "ci"], "success", state) do
     Logger.info("MqttHandler success message")
 
-    LampControl.Lamp.set_color("#ff0000")
+    LampControl.Lamp.set_color("#00ff00")
     {:ok, state}
   end
 
   def handle_message(["", "joelbyler@gmail.com", "ci"], "fail", state) do
     Logger.info("MqttHandler fail message")
 
-    LampControl.Lamp.set_color("#00ff00")
+    LampControl.Lamp.set_color("#ff0000")
+    {:ok, state}
+  end
+
+  def handle_message(["", "joelbyler@gmail.com", "ci"], "working", state) do
+    Logger.info("MqttHandler fail message")
+
+    LampControl.Lamp.set_color("#0000ff")
     {:ok, state}
   end
 
