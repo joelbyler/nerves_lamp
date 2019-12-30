@@ -37,7 +37,7 @@ Building out the hardware:
 Shopping List, from Amazon:
 * [Raspberry Pi Zero W](https://www.amazon.com/dp/B06XFZC3BX/)
 * [Raspberry Pi Case](https://www.amazon.com/dp/B01HP636I4/)
-* [16G+ microSD](https://www.amazon.com/dp/B073K14CVB/)
+* [16GB+ microSD](https://www.amazon.com/dp/B073K14CVB/)
 * [Tap Light](https://www.amazon.com/dp/B000BPPN8I/)
 * [1000uF Capacitor](https://www.amazon.com/dp/B074RFT3VN/)
 * [1N4001 Diode](https://www.amazon.com/dp/B071YWNBVM/)
