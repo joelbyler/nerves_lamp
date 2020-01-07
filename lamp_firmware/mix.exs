@@ -2,7 +2,7 @@ defmodule LampFirmware.MixProject do
   use Mix.Project
 
   @app :lamp_firmware
-  @version "0.1.4"
+  @version "0.1.5"
   @all_targets [:rpi, :rpi0, :rpi2, :rpi3, :rpi3a, :rpi4, :bbb, :x86_64]
 
   def project do
