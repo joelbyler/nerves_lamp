@@ -44,32 +44,24 @@ config :nerves_firmware_ssh,
   ]
 
 import_config "../../lamp_web_ui/config/config.exs"
-# import_config "../../lamp_web_ui/config/prod.exs"
 import_config "../../lamp_control/config/config.exs"
-
-# config :lamp_web_ui, LampWebUiWeb.Endpoint,
-#   # Nerves root filesystem is read-only, so disable the code reloader
-#   code_reloader: false,
-#   http: [port: 80],
-#   # Use compile-time Mix config instead of runtime environment variables
-#   load_from_system_env: false,
-#   # Start the server since we're running in a release instead of through `mix`
-#   server: true,
-#   url: [host: "nerves.local", port: 80]
 
 config :nerves_network,
   regulatory_domain: "US"
-
-key_mgmt = System.get_env("NERVES_NETWORK_KEY_MGMT") || "WPA-PSK"
 
 config :nerves_network, :default,
   wlan0: [
     networks: [
       [
-        ssid: System.get_env("NERVES_NETWORK_SSID"),
-        psk: System.get_env("NERVES_NETWORK_PSK"),
-        key_mgmt: String.to_atom(key_mgmt),
-        scan_ssid: 1 #if your WiFi setup as hidden
+        ssid: "Codemash_Secure",
+        psk: "3141592653589793",
+        key_mgmt: :"WPA-PSK",
+        priority: 100
+      ],
+      [
+        ssid: "codemash",
+        key_mgmt: :NONE,
+        priority: 0
       ]
     ]
   ],
